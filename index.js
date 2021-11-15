@@ -22,9 +22,6 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
     console.log('Gładkobot jest online');
-    client.channels
-        .find(channel => channel.name === '🤖┇вσт')
-        .send('Gładko poszło, jestem online!');
 });
 
 client.on('message', message => {
