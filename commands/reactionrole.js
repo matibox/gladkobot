@@ -3,23 +3,23 @@ module.exports = {
     description: 'Sets up a reaction role message!',
     async execute(message, args, Discord, client) {
         const channel = '909532424084533249';
-        const role = message.guild.roles.cache.find(
+        const yellowTeamRole = message.guild.roles.cache.find(
             role => role.name === 'Uczeń'
         );
 
-        const emote = '📚';
+        const yellowTeamEmoji = '📚';
 
         let embed = new Discord.MessageEmbed()
             .setColor('#96812d')
             .setTitle('Wybierz rolę')
             .setDescription(
                 'Wybierz odpowiednią rolę aby otrzymywać powiadomienia dotyczące korepetycji\n\n' +
-                    `${roleStudent} - Uczeń`
+                    `${yellowTeamEmoji} - Uczeń`
             )
             .setFooter('Made by Mateusz Hladky');
 
         let messageEmbed = await message.channel.send(embed);
-        messageEmbed.react(emote);
+        messageEmbed.react(yellowTeamEmoji);
 
         client.on('messageReactionAdd', async (reaction, user) => {
             if (reaction.message.partial) await reaction.message.fetch();
@@ -28,10 +28,10 @@ module.exports = {
             if (!reaction.message.guild) return;
 
             if (reaction.message.channel.id == channel) {
-                if (reaction.emoji.name === emote) {
+                if (reaction.emoji.name === yellowTeamEmoji) {
                     await reaction.message.guild.members.cache
                         .get(user.id)
-                        .roles.add(role);
+                        .roles.add(yellowTeamRole);
                 }
             } else {
                 return;
@@ -45,10 +45,10 @@ module.exports = {
             if (!reaction.message.guild) return;
 
             if (reaction.message.channel.id == channel) {
-                if (reaction.emoji.name === emote) {
+                if (reaction.emoji.name === yellowTeamEmoji) {
                     await reaction.message.guild.members.cache
                         .get(user.id)
-                        .roles.remove(role);
+                        .roles.remove(yellowTeamRole);
                 }
             } else {
                 return;
