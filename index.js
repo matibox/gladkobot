@@ -33,6 +33,10 @@ client.on('message', message => {
             .get('reactionrole')
             .execute(message, args, Discord, client);
         // message.channel.send('Discord.js v13 do wyjebania <3');
+    } else if (command === 'reactionrolegroup') {
+        client.commands
+            .get('reactionrolegroup')
+            .execute(message, args, Discord, client);
     }
 });
 

@@ -1,25 +1,31 @@
 module.exports = {
-    name: 'reactionrole',
+    name: 'reactionrolegroup',
     description: 'Sets up a reaction role message!',
     async execute(message, args, Discord, client) {
         const channel = '909532424084533249';
-        const role = message.guild.roles.cache.find(
-            role => role.name === 'Uczeń'
+        const groupOneRole = message.guild.roles.cache.find(
+            role => role.name === 'Grupa 1'
+        );
+        const groupTwoRole = message.guild.roles.cache.find(
+            role => role.name === 'Grupa 2'
         );
 
-        const role = '📚';
+        const groupOneEmote = '1️⃣';
+        const groupTwoEmote = '2️⃣';
 
         let embed = new Discord.MessageEmbed()
             .setColor('#96812d')
-            .setTitle('Wybierz rolę')
+            .setTitle('Wybierz grupę')
             .setDescription(
-                'Wybierz odpowiednią rolę aby otrzymywać powiadomienia dotyczące korepetycji\n\n' +
-                    `${role} - Uczeń`
+                'Wybierz swoją grupę aby otrzymywać powiadomienia o przesyłanych plikach z danej grupy\n\n' +
+                    `${groupOneEmote} - Grupa 1` +
+                    `${groupTwoEmote} - Grupa 2`
             )
             .setFooter('Made by Mateusz Hladky');
 
         let messageEmbed = await message.channel.send(embed);
-        messageEmbed.react(role);
+        messageEmbed.react(groupOneEmote);
+        messageEmbed.react(groupTwoEmote);
 
         client.on('messageReactionAdd', async (reaction, user) => {
             if (reaction.message.partial) await reaction.message.fetch();
@@ -28,10 +34,14 @@ module.exports = {
             if (!reaction.message.guild) return;
 
             if (reaction.message.channel.id == channel) {
-                if (reaction.emoji.name === role) {
+                if (reaction.emoji.name === groupOneEmote) {
                     await reaction.message.guild.members.cache
                         .get(user.id)
-                        .roles.add(role);
+                        .roles.add(groupOneRole);
+                } else if (reaction.emoji.name === groupTwoEmote) {
+                    await reaction.message.guild.members.cache
+                        .get(user.id)
+                        .roles.add(groupTwoRole);
                 }
             } else {
                 return;
@@ -45,10 +55,14 @@ module.exports = {
             if (!reaction.message.guild) return;
 
             if (reaction.message.channel.id == channel) {
-                if (reaction.emoji.name === role) {
+                if (reaction.emoji.name === groupOneEmote) {
                     await reaction.message.guild.members.cache
                         .get(user.id)
-                        .roles.remove(role);
+                        .roles.remove(groupOneRole);
+                } else if (reaction.emoji.name === groupTwoEmote) {
+                    await reaction.message.guild.members.cache
+                        .get(user.id)
+                        .roles.remove(groupTwoRole);
                 }
             } else {
                 return;
