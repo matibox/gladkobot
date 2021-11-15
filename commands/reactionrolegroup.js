@@ -18,7 +18,7 @@ module.exports = {
             .setTitle('Wybierz grupę')
             .setDescription(
                 'Wybierz swoją grupę aby otrzymywać powiadomienia o przesyłanych plikach z danej grupy\n\n' +
-                    `${groupOneEmote} - Grupa 1` +
+                    `${groupOneEmote} - Grupa 1 \n` +
                     `${groupTwoEmote} - Grupa 2`
             )
             .setFooter('Made by Mateusz Hladky');

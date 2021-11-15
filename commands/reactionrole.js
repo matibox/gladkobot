@@ -7,7 +7,7 @@ module.exports = {
             role => role.name === 'Uczeń'
         );
 
-        const roleStudent = '📚';
+        const emote = '📚';
 
         let embed = new Discord.MessageEmbed()
             .setColor('#96812d')
@@ -19,7 +19,7 @@ module.exports = {
             .setFooter('Made by Mateusz Hladky');
 
         let messageEmbed = await message.channel.send(embed);
-        messageEmbed.react(roleStudent);
+        messageEmbed.react(emote);
 
         client.on('messageReactionAdd', async (reaction, user) => {
             if (reaction.message.partial) await reaction.message.fetch();
@@ -28,10 +28,10 @@ module.exports = {
             if (!reaction.message.guild) return;
 
             if (reaction.message.channel.id == channel) {
-                if (reaction.emoji.name === roleStudent) {
+                if (reaction.emoji.name === emote) {
                     await reaction.message.guild.members.cache
                         .get(user.id)
-                        .roles.add(roleStudent);
+                        .roles.add(role);
                 }
             } else {
                 return;
@@ -45,10 +45,10 @@ module.exports = {
             if (!reaction.message.guild) return;
 
             if (reaction.message.channel.id == channel) {
-                if (reaction.emoji.name === roleStudent) {
+                if (reaction.emoji.name === emote) {
                     await reaction.message.guild.members.cache
                         .get(user.id)
-                        .roles.remove(roleStudent);
+                        .roles.remove(role);
                 }
             } else {
                 return;
