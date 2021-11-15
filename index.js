@@ -36,4 +36,4 @@ client.on('message', message => {
     }
 });
 
-client.login();
+client.login(PROCESS_ENV_TOKEN);
