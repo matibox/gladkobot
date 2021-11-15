@@ -7,19 +7,19 @@ module.exports = {
             role => role.name === 'Uczeń'
         );
 
-        const role = '📚';
+        const roleStudent = '📚';
 
         let embed = new Discord.MessageEmbed()
             .setColor('#96812d')
             .setTitle('Wybierz rolę')
             .setDescription(
                 'Wybierz odpowiednią rolę aby otrzymywać powiadomienia dotyczące korepetycji\n\n' +
-                    `${role} - Uczeń`
+                    `${roleStudent} - Uczeń`
             )
             .setFooter('Made by Mateusz Hladky');
 
         let messageEmbed = await message.channel.send(embed);
-        messageEmbed.react(role);
+        messageEmbed.react(roleStudent);
 
         client.on('messageReactionAdd', async (reaction, user) => {
             if (reaction.message.partial) await reaction.message.fetch();
@@ -28,10 +28,10 @@ module.exports = {
             if (!reaction.message.guild) return;
 
             if (reaction.message.channel.id == channel) {
-                if (reaction.emoji.name === role) {
+                if (reaction.emoji.name === roleStudent) {
                     await reaction.message.guild.members.cache
                         .get(user.id)
-                        .roles.add(role);
+                        .roles.add(roleStudent);
                 }
             } else {
                 return;
@@ -45,10 +45,10 @@ module.exports = {
             if (!reaction.message.guild) return;
 
             if (reaction.message.channel.id == channel) {
-                if (reaction.emoji.name === role) {
+                if (reaction.emoji.name === roleStudent) {
                     await reaction.message.guild.members.cache
                         .get(user.id)
-                        .roles.remove(role);
+                        .roles.remove(roleStudent);
                 }
             } else {
                 return;
