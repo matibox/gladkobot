@@ -38,6 +38,8 @@ client.on('message', message => {
         client.commands
             .get('reactionrolegroup')
             .execute(message, args, Discord, client);
+    } else if (command === 'stfu') {
+        client.commands.get('stfu').execute(message, args, Discord, client);
     }
 });
 
