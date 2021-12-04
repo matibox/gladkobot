@@ -5,7 +5,8 @@ module.exports = {
         const memberId = '561228400870686723';
         const member = message.guild.members.cache.get(memberId);
 
-        if (message.member.roles.find(role => role.name === 'Korepetytor')) {
+        if (message.member.roles.cache.has('900824235847589968')) {
+            console.log('Jesteś gładkim');
             let muted = member.voice.serverMute;
             if (muted) {
                 member.voice.setMute(false);
@@ -17,6 +18,7 @@ module.exports = {
                 );
             }
         } else {
+            console.log('Jesteś sus');
             message.channel.send(
                 'Nie możesz zmutować/odmutować Kawy, beka z ciebie.'
             );
