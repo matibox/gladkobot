@@ -5,8 +5,11 @@ module.exports = {
         const memberId = '561228400870686723';
         const member = message.guild.members.cache.get(memberId);
 
-        if (message.member.roles.cache.has('900824235847589968')) {
-            console.log('Jesteś gładkim');
+        if (
+            message.member.roles.cache.has('900824235847589968') ||
+            message.member.roles.cache.has('918603385735876679')
+        ) {
+            console.log('Jesteś gładkim albo wiernym uczniem');
             let muted = member.voice.serverMute;
             if (muted) {
                 member.voice.setMute(false);
