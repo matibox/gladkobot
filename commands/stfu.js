@@ -6,8 +6,8 @@ module.exports = {
         const member = message.guild.members.cache.get(memberId);
 
         if (
-            message.member.roles.cache.has('900824235847589968') ||
-            message.member.roles.cache.has('918603385735876679')
+            message.member.roles.cache.has('938035219112558642') || // korepetytor
+            message.member.roles.cache.has('938028987848994816') // wierny uczeń
         ) {
             console.log('Jesteś gładkim albo wiernym uczniem');
             let muted = member.voice.serverMute;
