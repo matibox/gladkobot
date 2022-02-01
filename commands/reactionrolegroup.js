@@ -10,8 +10,8 @@ module.exports = {
             role => role.name === 'Grupa 2'
         );
 
-        const groupOneEmote = '1️⃣';
-        const groupTwoEmote = '2️⃣';
+        const groupOneEmote = '❌';
+        const groupTwoEmote = '⭕';
 
         let embed = new Discord.MessageEmbed()
             .setColor('#96812d')
