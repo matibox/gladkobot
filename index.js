@@ -42,6 +42,8 @@ client.on('message', message => {
         client.commands.get('stfu').execute(message, args, Discord, client);
     } else if (command === 'hey') {
         message.reply('Siema! :wave:');
+    } else if (command === 'randstfu') {
+        client.commands.get('randstfu').execute(message, args, Discord, client);
     }
 });
 
